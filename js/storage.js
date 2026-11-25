@@ -41,6 +41,7 @@ function getData(key) {
 function setData(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
+// aqui guarda las llaves
 
 function getSession() {
   return JSON.parse(localStorage.getItem(STORAGE_KEYS.SESSION)) || null;
