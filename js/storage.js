@@ -31,9 +31,6 @@ function initStorage() {
   if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
     localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(DEFAULT_USERS));
   }
-  if (!localStorage.getItem(STORAGE_KEYS.EXAMS)) {
-    localStorage.setItem(STORAGE_KEYS.EXAMS, JSON.stringify(DEFAULT_EXAMS));
-  }
 }
 
 function getData(key) {
