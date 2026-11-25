@@ -5,22 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body data-subpage="true">
   <header>
-    <h1>Acme School</h1>
+    <h1>Acme School — Plataforma de Exámenes</h1>
     <nav>
-      <span id="user-display"></span>
-      <button id="logout-btn" type="button">Cerrar Sesión</button>
+      <a href="dashboard.html">Panel</a>
+      <a href="usuarios.html">Gestión de Usuarios</a>
+      <span id="session-text"></span>
+      <button type="button" id="logout-btn">Cerrar Sesión</button>
     </nav>
+    <hr>
   </header>
 
   <main>
-    <h2>Módulos Disponibles</h2>
-    <section id="exams-list">
-      <p>No hay exámenes cargados aún.</p>
-    </section>
+    <h2>Panel Principal</h2>
+    <p id="welcome-text"></p>
+    <ul>
+      <li><a href="usuarios.html">Gestión de Usuarios</a></li>
+    </ul>
   </main>
 
-  <script src="../js/app.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/dashboard.js"></script>
 </body>
 </html>

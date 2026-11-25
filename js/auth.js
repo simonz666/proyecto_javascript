@@ -1,33 +1,56 @@
+function requireAuth(redirectPath = '../index.html') {
+  const session = getSession();
+  if (!session) {
+    window.location.href = redirectPath;
+    return null;
+  }
+  return session;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Si ya existe una sesión activa, redirigir directamente al dashboard
-  if (localStorage.getItem('acme_session')) {
+  const isSubpage = document.body.dataset.subpage === 'true';
+  const loginHref = isSubpage ? '../index.html' : 'index.html';
+  const session = getSession();
+
+  const sessionText = document.getElementById('session-text');
+  if (sessionText && session) {
+    sessionText.textContent = `${session.fullName} (${session.role})`;
+  }
+
+  const logoutBtn = document.getElementById('logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      clearSession();
+      window.location.href = loginHref;
+    });
+  }
+
+  const loginForm = document.getElementById('login-form');
+  if (!loginForm) return;
+
+  if (session) {
     window.location.href = 'pages/dashboard.html';
     return;
   }
 
-  const loginForm = document.getElementById('login-form');
-  const errorMessage = document.getElementById('error-message');
+  const errorEl = document.getElementById('login-error');
 
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    const email = document.getElementById('login-email').value.trim().toLowerCase();
+    const password = document.getElementById('login-password').value;
 
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
+    const users = getData(STORAGE_KEYS.USERS);
+    const matchedUser = users.find(
+      (u) => u.email.toLowerCase() === email && u.password === password
+    );
 
-    const users = JSON.parse(localStorage.getItem('acme_users')) || [];
-    const validUser = users.find(u => u.email === email && u.password === password);
-
-    if (validUser) {
-      // Guardar sesión activa (sin la contraseña)
-      const sessionData = {
-        email: validUser.email,
-        name: validUser.name,
-        role: validUser.role
-      };
-      localStorage.setItem('acme_session', JSON.stringify(sessionData));
-      window.location.href = 'pages/dashboard.html';
-    } else {
-      errorMessage.textContent = 'Correo electrónico o contraseña incorrectos.';
+    if (!matchedUser) {
+      errorEl.textContent = 'Credenciales inválidas. Verifica tu correo y contraseña.';
+      return;
     }
+
+    setSession(matchedUser);
+    window.location.href = 'pages/dashboard.html';
   });
 });

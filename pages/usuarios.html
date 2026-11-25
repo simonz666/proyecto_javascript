@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acme School - Gestión de Usuarios</title>
+</head>
+<body data-subpage="true">
+  <header>
+    <h1>Acme School — Plataforma de Exámenes</h1>
+    <nav>
+      <a href="dashboard.html">Panel</a>
+      <a href="usuarios.html">Gestión de Usuarios</a>
+      <span id="session-text"></span>
+      <button type="button" id="logout-btn">Cerrar Sesión</button>
+    </nav>
+    <hr>
+  </header>
+
+  <main>
+    <h2>Gestión de Usuarios</h2>
+
+    <section>
+      <h3 id="user-form-title">Crear Usuario</h3>
+      <form id="user-form">
+        <input type="hidden" id="user-id">
+
+        <div>
+          <label for="user-identification">Número de identificación:</label>
+          <input type="text" id="user-identification" required>
+        </div>
+        <div>
+          <label for="user-fullname">Nombre completo:</label>
+          <input type="text" id="user-fullname" required>
+        </div>
+        <div>
+          <label for="user-email">Email:</label>
+          <input type="email" id="user-email" required>
+        </div>
+        <div>
+          <label for="user-phone">Teléfono:</label>
+          <input type="tel" id="user-phone" required>
+        </div>
+        <div>
+          <label for="user-role">Cargo:</label>
+          <select id="user-role" required>
+            <option value="Administrativo">Administrativo</option>
+            <option value="Docente">Docente</option>
+          </select>
+        </div>
+        <div>
+          <label for="user-password">Contraseña:</label>
+          <input type="password" id="user-password" required>
+        </div>
+
+        <button type="submit" id="user-submit-btn">Guardar Usuario</button>
+        <button type="button" id="user-cancel-btn">Cancelar edición</button>
+      </form>
+      <p id="user-feedback"></p>
+    </section>
+
+    <hr>
+
+    <section>
+      <h3>Usuarios Registrados</h3>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Identificación</th>
+            <th>Nombre completo</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Cargo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="users-table-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/usuarios.js"></script>
+</body>
+</html>
