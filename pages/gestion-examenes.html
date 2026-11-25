@@ -17,13 +17,89 @@
       <span id="session-text"></span>
       <button type="button" id="logout-btn">Cerrar Sesión</button>
     </nav>
-  </header>
-
   <main>
     <h2>Gestión de Exámenes</h2>
 
+    <section>
+      <h3 id="exam-form-title">Crear Examen</h3>
+      <form id="exam-form">
+        <input type="hidden" id="exam-id">
 
-  
+        <div>
+          <label for="exam-code">Código:</label>
+          <input type="text" id="exam-code" required>
+        </div>
+        <div>
+          <label for="exam-title">Título:</label>
+          <input type="text" id="exam-title" required>
+        </div>
+        <div>
+          <label for="exam-duration">Tiempo (minutos):</label>
+          <input type="number" id="exam-duration" min="1" required>
+        </div>
+        <div>
+          <label for="exam-pass">Porcentaje de aprobación (%):</label>
+          <input type="number" id="exam-pass" min="1" max="100" required>
+        </div>
+        <div>
+          <label for="exam-description">Descripción del examen:</label>
+          <textarea id="exam-description" rows="3" required></textarea>
+        </div>
+
+        <button type="submit">Guardar Examen</button>
+        <button type="button" id="exam-cancel-btn">Cancelar</button>
+      </form>
+      <p id="exam-feedback"></p>
+    </section>
+
+    <hr>
+
+    <section>
+      <h3>Exámenes Registrados</h3>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Título</th>
+            <th>Tiempo (min)</th>
+            <th>Aprobación (%)</th>
+            <th>Preguntas</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="exams-table-body"></tbody>
+      </table>
+    </section>
+
+    <hr>
+
+    <section id="questions-manager" hidden>
+      <h3>Preguntas del examen: <span id="selected-exam-name"></span></h3>
+
+      <form id="question-form">
+        <div>
+          <label for="question-text">Enunciado de la pregunta:</label>
+          <input type="text" id="question-text" required>
+        </div>
+
+        <fieldset>
+          <legend>Opciones de respuesta (marca una como correcta)</legend>
+          <div id="answers-draft-list"></div>
+          <button type="button" id="add-answer-row-btn">+ Agregar opción de respuesta</button>
+        </fieldset>
+
+        <button type="submit">Guardar Pregunta en el Examen</button>
+      </form>
+      <p id="question-feedback"></p>
+
+      <h4>Preguntas actuales de este examen</h4>
+      <div id="exam-questions-list"></div>
+    </section>
+  </main>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/gestion-examenes.js"></script>
 </body>
 </html>
     
