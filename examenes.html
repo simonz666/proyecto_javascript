@@ -20,9 +20,52 @@
     <hr>
   </header>
 
-  <main>
+    <main>
     <section id="exam-catalog-section">
       <h2>Exámenes Disponibles</h2>
       <div id="available-exams-list"></div>
     </section>
+
+    <section id="student-info-section" hidden>
+      <h2>Datos del Estudiante</h2>
+      <p>Examen seleccionado: <strong id="chosen-exam-title"></strong></p>
+      <form id="student-info-form">
+        <div>
+          <label for="student-identification">Número de identificación:</label>
+          <input type="text" id="student-identification" required>
+        </div>
+        <div>
+          <label for="student-fullname">Nombre completo:</label>
+          <input type="text" id="student-fullname" required>
+        </div>
+        <button type="submit">Comenzar Examen</button>
+        <button type="button" id="back-to-catalog-btn">Volver a la lista</button>
+      </form>
+    </section>
+
+    <section id="take-exam-section" hidden>
+      <header id="exam-runner-header">
+        <h2 id="runner-exam-title"></h2>
+        <p id="runner-exam-meta"></p>
+        <p><strong>Tiempo restante: <span id="timer-display">00:00</span></strong></p>
+      </header>
+      <hr>
+      <form id="exam-questions-form">
+        <div id="runner-questions-container"></div>
+        <button type="submit" id="finish-exam-btn">Terminar</button>
+      </form>
+    </section>
+
+    <section id="exam-result-section" hidden>
+      <h2>Resultado del Examen</h2>
+      <p id="result-student"></p>
+      <p id="result-score"></p>
+      <p><strong id="result-status"></strong></p>
+      <button type="button" id="new-attempt-btn">Volver a Exámenes Disponibles</button>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/resolver-examen.js"></script>
+</body>
 </html>
